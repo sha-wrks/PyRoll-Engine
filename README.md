@@ -1,89 +1,100 @@
-# Program Perhitungan Gaji Karyawan
+# PyRoll Engine
 
-This repository aims to provide a comprehensive starting point for understanding and implementing an employee salary calculation system. This program is implemented in Python and is suitable as an introduction to employee data management and salary calculation, which is appropriate for beginner and intermediate programmers. In this repository, you will find examples of how to record employee data, calculate salaries based on working hours, allowances, and deductions, and generate salary reports.
-
-<hr><br>
-
-## Purpose of This Repository
-
-This repository aims to provide a complete guide to understanding and implementing an employee salary calculation system. This program is implemented in Python and is designed to help companies accurately and efficiently calculate employee salaries. In this repository, you will find examples of how to record employee data, calculate salaries based on working hours, allowances, and deductions, and generate monthly salary reports. This program is very suitable for beginner and intermediate programmers who want to learn practical applications in human resource management.
-
-<hr><br>
-
-## Demonstration
-
-Here is a demonstration of the main function from the program:
-
-```python
-def calculate_salary(hours_worked, hourly_rate, allowances, deductions):
-    gross_salary = hours_worked * hourly_rate
-    net_salary = gross_salary + allowances - deductions
-    return net_salary
-
-# Example usage
-hours_worked = 160
-hourly_rate = 20
-allowances = 300
-deductions = 50
-
-net_salary = calculate_salary(hours_worked, hourly_rate, allowances, deductions)
-print(f"Net Salary: ${net_salary}")
-```
-
-<hr><br>
+PyRoll Engine is a simple payroll calculator application with a desktop GUI built using Tkinter. It supports salary calculations with hours worked, hourly rate, deductions, tax rate, and bonus. The app uses Redis as the primary data store and provides an in-memory fallback when Redis is not available.
 
 ## Features
 
-- Record employee data
-- Calculate salaries based on working hours
-- Calculate allowances and deductions
-- Generate monthly salary reports
+- Employee salary calculation
+- Tax and bonus support
+- Save employee records to Redis
+- View saved employee list
+- Dummy initial data for demonstration
+- Redis fallback mode when Redis is unavailable
 
-<hr><br>
+## Project Structure
 
-## Technologies Used
+- `main.py` — application entry point
+- `src/engine/` — payroll calculation logic
+- `src/ui/` — user interface implementation
+- `src/database/` — data storage and Redis integration
 
-- Python
-- Pandas (for data management)
-- Matplotlib (for data visualization)
+## Prerequisites
 
-<hr><br>
+- Python 3.10 or later
+- `pip`
+- Redis server on `localhost:6379` (recommended)
+- Optional: Memurai on Windows or Redis via WSL if native Redis is not installed
 
-## Project Setup
+## Installation
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/n4vrl0s3/Program-Perhitungan-Gaji-Karyawan.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd Program-Perhitungan-Gaji-Karyawan
-   ```
-3. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+### 1. Install Python
 
-<hr><br>
+Install Python from the official website or package manager:
 
-## Steps to Run
+- Windows: https://www.python.org/downloads/
+- macOS: `brew install python` or download from python.org
+- Linux: `sudo apt install python3 python3-pip`
 
-1. Run the program:
-   ```bash
-   python program_v2.py
-   python program.py
-   ```
+### 2. Install dependencies
 
-<hr><br>
+From the project root:
 
-## License
+```bash
+pip install -r requirements.txt
+```
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+If you want to use a virtual environment:
 
-<hr><br>
+```bash
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# macOS / Linux
+source venv/bin/activate
 
-<div align="center">
-  <a href="https://www.x.com/n4vrl0s3/">
-    <img src="https://capsule-render.vercel.app/api?type=waving&height=200&color=100:49108B,20:F3F8FF&section=footer&reversal=false&textBg=false&fontAlignY=50&descAlign=48&descAlignY=59"/>
-  </a>
-</div>
+pip install -r requirements.txt
+```
+
+### 3. Install Redis
+
+#### Windows
+
+Recommended: install Memurai Community Edition or another Redis-compatible Windows server. Start the service and ensure it listens on `localhost:6379`.
+
+Alternative: use WSL/Ubuntu and install Redis there.
+
+#### macOS
+
+```bash
+brew install redis
+brew services start redis
+```
+
+#### Linux (Ubuntu / Debian)
+
+```bash
+sudo apt update
+sudo apt install redis-server
+sudo systemctl enable redis-server
+sudo systemctl start redis-server
+```
+
+### 4. Run the application
+
+From the project root:
+
+```bash
+python main.py
+```
+
+## Notes
+
+- The app uses Redis if available. If Redis is not running, it falls back to in-memory storage and still runs.
+- Dummy employee data is loaded on first run.
+- `requirements.txt` currently includes `redis`.
+
+## Troubleshooting
+
+- If the app cannot connect to Redis, make sure Redis or Memurai is running on `localhost:6379`.
+- For Windows, verify the Redis service is active in Services or Memurai UI.
+- If you see `ConnectionRefusedError`, start Redis and rerun the app.
