@@ -4,7 +4,7 @@ build-backend = "setuptools.backends.legacy:build"
 
 [project]
 name = "pyroll-engine"
-version = "1.1.0"
+version = "1.1.1"
 description = "A lightweight desktop payroll management system"
 readme = "README.md"
 requires-python = ">=3.10"
